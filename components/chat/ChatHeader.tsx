@@ -1,7 +1,7 @@
 'use client';
 
 import { Companion, Message } from '@prisma/client';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import {
   ChevronLeft,
   Edit,
@@ -10,15 +10,15 @@ import {
   Trash,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import BotAvatar from './BotAvatar';
+import BotAvatar from '../BotAvatar';
 import { useUser } from '@clerk/nextjs';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from './ui/dropdown-menu';
-import { useToast } from './ui/use-toast';
+} from '../ui/dropdown-menu';
+import { useToast } from '../ui/use-toast';
 import axios from 'axios';
 
 interface Props {

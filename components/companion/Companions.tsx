@@ -1,9 +1,10 @@
 import { Companion } from '@prisma/client';
 import Image from 'next/image';
 import React from 'react';
-import { Card, CardFooter, CardHeader } from './ui/card';
+import { Card, CardFooter, CardHeader } from '../ui/card';
 import Link from 'next/link';
 import { MessageSquare } from 'lucide-react';
+import { Button } from '../ui/button';
 
 interface Props {
   data: (Companion & {
@@ -22,6 +23,10 @@ const Companions = ({ data }: Props) => {
         </div>
 
         <p className='text-sm text-muted-foreground'>No companions found.</p>
+
+        <Button asChild>
+          <Link href='/companion/new'>Create a companion</Link>
+        </Button>
       </div>
     );
   }

@@ -13,23 +13,23 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from './ui/form';
-import { Separator } from './ui/separator';
-import ImageUpload from './image-upload';
-import { Input } from './ui/input';
+} from '../ui/form';
+import { Separator } from '../ui/separator';
+import ImageUpload from '../shared/image-upload';
+import { Input } from '../ui/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from './ui/select';
-import { Textarea } from './ui/textarea';
+} from '../ui/select';
+import { Textarea } from '../ui/textarea';
 import { PREAMBLE, SEED_CHAT } from '@/constants/text';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import { Wand2 } from 'lucide-react';
 import axios from 'axios';
-import { useToast } from './ui/use-toast';
+import { useToast } from '../ui/use-toast';
 import { useRouter } from 'next/navigation';
 
 interface Props {
