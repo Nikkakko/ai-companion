@@ -23,16 +23,16 @@ const ChatClient = ({ companion }: Props) => {
     companion.messages
   );
 
-  const { handleInputChange, handleSubmit, isLoading, input, setInput } =
+  const { input, isLoading, handleInputChange, handleSubmit, setInput } =
     useCompletion({
       api: `/api/chat/${companion.id}`,
-      onFinish: (prompt, completion) => {
+      onFinish(_prompt, completion) {
         const systemMessage: ChatMessageProps = {
           role: 'system',
           content: completion,
         };
 
-        setMessages(messages => [...messages, systemMessage]);
+        setMessages(current => [...current, systemMessage]);
         setInput('');
 
         router.refresh();
@@ -45,7 +45,7 @@ const ChatClient = ({ companion }: Props) => {
       content: input,
     };
 
-    setMessages(messages => [...messages, userMessage]);
+    setMessages(current => [...current, userMessage]);
 
     handleSubmit(e);
   };
