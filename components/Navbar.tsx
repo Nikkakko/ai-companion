@@ -8,13 +8,30 @@ import React from 'react';
 import { Button } from './ui/button';
 import { ModeToggle } from './shared/mode-toggle';
 import MobileSidebar from './MobileSidebar';
+import { useProModel } from '@/hooks/use-pro-model';
+import { useRouter } from 'next/navigation';
 
 const font = Poppins({
   weight: '600',
   subsets: ['latin'],
 });
 
-const Navbar = () => {
+interface NavbarProps {
+  isPro: boolean;
+}
+
+const Navbar = ({ isPro }: NavbarProps) => {
+  const { onOpen } = useProModel();
+  const router = useRouter();
+
+  const handleSubscribe = async () => {
+    if (!isPro) {
+      onOpen();
+    } else {
+      router.push('/settings');
+    }
+  };
+
   return (
     <div className='fixed w-full z-50 flex justify-between items-center py-2 px-4 border-b border-primary/10 bg-secondary h-16'>
       <div className='flex items-center '>
@@ -31,10 +48,17 @@ const Navbar = () => {
         </Link>
       </div>
       <div className='flex items-center gap-x-3'>
-        <Button className='' variant='premium' size='sm'>
-          Upgrade
-          <Sparkles className='inline-block ml-2 h-4 w-4 fill-white text-white' />
-        </Button>
+        {!isPro && (
+          <Button
+            className=''
+            variant='premium'
+            size='sm'
+            onClick={handleSubscribe}
+          >
+            Upgrade to Pro
+            <Sparkles className='inline-block ml-2 h-4 w-4 fill-white text-white' />
+          </Button>
+        )}
         <ModeToggle />
         <UserButton afterSignOutUrl='/' />
       </div>

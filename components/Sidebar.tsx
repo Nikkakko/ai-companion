@@ -1,17 +1,22 @@
 'use client';
 import { routes } from '@/constants/routes';
+import { useProModel } from '@/hooks/use-pro-model';
 import { cn } from '@/lib/utils';
-import { usePathname, useRouter } from 'next/navigation';
+import { redirect, usePathname, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
-const Sidebar = () => {
+const Sidebar = ({ isPro }: { isPro: boolean }) => {
   const pathname = usePathname();
   const router = useRouter();
+  const { onOpen } = useProModel();
 
   const onNavigate = (href: string, pro: boolean) => {
     //TODO check if pro
+    if (pro && !isPro) return onOpen();
 
     router.push(href);
   };
+
   return (
     <div className='space-y-4 flex flex-col h-full text-primary bg-secondary'>
       <div className='p-3 flex flex-1 justify-center '>
